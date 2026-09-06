@@ -1,1 +1,882 @@
-Hello World - Welcome Nirav!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Niravkumar Patel — Software Development Engineer IV</title>
+<meta name="description" content="Software Development Engineer IV at Avalara — tax-compliance connectors, e-invoicing platforms, and agentic AI systems." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e9eef3;
+    --bg-panel:#ffffff;
+    --bg-panel-alt:#f2f5f9;
+    --ink:#16324a;
+    --ink-soft:#4c6478;
+    --line:#bccada;
+    --line-strong:#8ba0b3;
+    --accent:#b9631f;
+    --accent-soft:#f0d9bf;
+    --accent-ink:#ffffff;
+    --good:#2a7d63;
+    --good-bg:rgba(42,125,99,.12);
+    --font-display:'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+    --font-body:'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e2233;
+      --bg-panel:#123049;
+      --bg-panel-alt:#0e2740;
+      --ink:#dce8f2;
+      --ink-soft:#93accc;
+      --line:#24455f;
+      --line-strong:#3c6483;
+      --accent:#e0954f;
+      --accent-soft:rgba(224,149,79,.16);
+      --accent-ink:#16232e;
+      --good:#57c6a0;
+      --good-bg:rgba(87,198,160,.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e2233;
+    --bg-panel:#123049;
+    --bg-panel-alt:#0e2740;
+    --ink:#dce8f2;
+    --ink-soft:#93accc;
+    --line:#24455f;
+    --line-strong:#3c6483;
+    --accent:#e0954f;
+    --accent-soft:rgba(224,149,79,.16);
+    --accent-ink:#16232e;
+    --good:#57c6a0;
+    --good-bg:rgba(87,198,160,.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .frame{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 clamp(16px,4vw,40px);
+    position:relative;
+  }
+
+  /* ---------- corner registration marks on the outer sheet ---------- */
+  .sheet{ position:relative; }
+  .sheet::before, .sheet::after,
+  .sheet .reg-br, .sheet .reg-tr{
+    content:"";
+    position:fixed;
+    width:18px; height:18px;
+    border:1.5px solid var(--line-strong);
+    opacity:.55;
+    z-index:5;
+    pointer-events:none;
+  }
+  .sheet::before{ top:14px; left:14px; border-right:none; border-bottom:none; }
+  .sheet::after{ bottom:14px; left:14px; border-right:none; border-top:none; }
+  .reg-tr{ top:14px; right:14px; border-left:none; border-bottom:none; }
+  .reg-br{ bottom:14px; right:14px; border-left:none; border-top:none; }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:10;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px clamp(16px,4vw,40px);
+    max-width:1040px; margin:0 auto;
+  }
+  .mark{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:.82rem;
+    letter-spacing:.04em;
+    border:1px solid var(--line-strong);
+    padding:5px 9px;
+    color:var(--ink);
+  }
+  .mark em{ font-style:normal; color:var(--accent); }
+  nav.toplinks{ display:flex; gap:clamp(10px,2vw,26px); }
+  nav.toplinks a{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:color .15s ease, border-color .15s ease;
+    white-space:nowrap;
+  }
+  nav.toplinks a:hover{ color:var(--accent); border-color:var(--accent); }
+  @media (max-width:640px){ nav.toplinks{ display:none; } }
+
+  main{ display:block; }
+
+  section{
+    padding:64px 0 12px;
+    border-top:1px solid var(--line);
+  }
+  section#hero{ border-top:none; padding-top:56px; }
+
+  .sheet-label{
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:28px;
+  }
+  .sheet-label .num{ color:var(--accent); font-weight:600; }
+  .sheet-label .rule{ flex:1; height:1px; background:var(--line); }
+
+  /* ---------- hero ---------- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.78rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 18px;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.5rem, 6.4vw, 4.4rem);
+    line-height:1.03;
+    letter-spacing:-.015em;
+    margin:0 0 14px;
+    text-wrap:balance;
+  }
+  .role-line{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.15rem, 2.4vw, 1.5rem);
+    color:var(--ink-soft);
+    margin:0 0 26px;
+    max-width:56em;
+    text-wrap:balance;
+  }
+  .thesis{
+    max-width:56em;
+    font-size:1.05rem;
+    color:var(--ink);
+    margin:0 0 34px;
+  }
+
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-bottom:44px;
+    max-width:640px;
+  }
+  .stat{
+    background:var(--bg-panel);
+    padding:14px 10px;
+    text-align:center;
+  }
+  .stat .n{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-weight:600;
+    font-size:1.35rem;
+    color:var(--accent);
+    display:block;
+  }
+  .stat .l{
+    font-family:var(--font-mono);
+    font-size:.62rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  @media (max-width:560px){ .stat-row{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+  .cta-row{ display:flex; flex-wrap:wrap; gap:12px 22px; margin-bottom:52px; }
+  .cta{
+    font-family:var(--font-mono);
+    font-size:.82rem;
+    text-decoration:none;
+    color:var(--ink);
+    display:inline-flex; align-items:center; gap:7px;
+    padding-bottom:2px;
+    border-bottom:1px solid var(--line-strong);
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .cta.primary{
+    background:var(--accent); color:var(--accent-ink);
+    border:1px solid var(--accent); border-bottom:1px solid var(--accent);
+    padding:9px 14px;
+  }
+  .cta:not(.primary):hover{ color:var(--accent); border-color:var(--accent); }
+  .cta.primary:hover{ filter:brightness(1.07); }
+  .cta .arrow{ transition:transform .15s ease; }
+  .cta:hover .arrow{ transform:translateX(2px); }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.25fr 1fr;
+    gap:clamp(24px,5vw,56px);
+    align-items:start;
+  }
+  @media (max-width:720px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ margin:0 0 16px; }
+  .about-grid p:last-child{ margin-bottom:0; }
+  h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(1.5rem,3vw,2rem);
+    margin:0 0 22px;
+    text-wrap:balance;
+  }
+  .spec-box{
+    border:1px solid var(--line);
+    background:var(--bg-panel);
+  }
+  .spec-row{
+    display:flex; justify-content:space-between; gap:14px;
+    padding:11px 16px;
+    border-bottom:1px solid var(--line);
+    font-size:.86rem;
+  }
+  .spec-row:last-child{ border-bottom:none; }
+  .spec-row .k{
+    font-family:var(--font-mono);
+    font-size:.68rem;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .spec-row .v{ text-align:right; color:var(--ink); }
+
+  /* ---------- systems / projects ---------- */
+  .systems-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+
+  .cat-block{ margin-bottom:40px; }
+  .cat-block:last-child{ margin-bottom:0; }
+  .cat-head{ margin-bottom:14px; }
+  .cat-name{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.3rem;
+    margin:0 0 4px;
+  }
+  .cat-tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:.95rem;
+    margin:0;
+    max-width:52em;
+  }
+  .proj-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-bottom:14px;
+  }
+  .chip-cap{
+    font-family:var(--font-mono);
+    font-size:.66rem;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:2px 0 8px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip-link{
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    text-decoration:none;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:5px 10px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .chip-link:hover{ color:var(--accent); border-color:var(--accent); }
+  .cat-note{
+    font-family:var(--font-body);
+    font-style:italic;
+    font-size:.84rem;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .card{
+    background:var(--bg-panel);
+    padding:26px 26px 24px;
+    display:flex; flex-direction:column;
+  }
+  .card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:6px; }
+  .card h3{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.28rem;
+    margin:0;
+  }
+  .pill{
+    font-family:var(--font-mono);
+    font-size:.62rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border:1px solid var(--good);
+    color:var(--good);
+    background:var(--good-bg);
+    white-space:nowrap;
+  }
+  .pill.tag{ border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
+  .card .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:.95rem;
+    margin:0 0 14px;
+  }
+  .tagset{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .tag{
+    font-family:var(--font-mono);
+    font-size:.66rem;
+    letter-spacing:.02em;
+    padding:3px 7px;
+    border:1px solid var(--line-strong);
+    color:var(--ink-soft);
+  }
+  .card ul{ margin:0; padding-left:0; list-style:none; flex:1; }
+  .card li{
+    position:relative;
+    padding-left:16px;
+    margin-bottom:9px;
+    font-size:.87rem;
+    color:var(--ink);
+  }
+  .card li:last-child{ margin-bottom:0; }
+  .card li::before{
+    content:"→";
+    position:absolute; left:0; top:0;
+    color:var(--accent);
+    font-size:.8rem;
+  }
+  .card-link{
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:14px;
+    font-family:var(--font-mono);
+    font-size:.78rem;
+    text-decoration:none;
+    color:var(--accent);
+    border-bottom:1px solid var(--accent);
+    padding-bottom:1px;
+    align-self:flex-start;
+  }
+  .card-link-row{ display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:14px; }
+  .card-link-row .card-link{ margin-top:0; }
+  .card-note{
+    font-family:var(--font-body);
+    font-style:italic;
+    font-size:.78rem;
+    color:var(--ink-soft);
+    margin:12px 0 0;
+  }
+
+  /* ---------- skills legend ---------- */
+  .legend{ border:1px solid var(--line); background:var(--bg-panel); }
+  .legend-row{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:18px;
+    padding:14px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .legend-row:last-child{ border-bottom:none; }
+  @media (max-width:600px){ .legend-row{ grid-template-columns:1fr; gap:6px; } }
+  .legend-row .k{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    padding-top:2px;
+  }
+  .legend-row .v{ font-size:.92rem; color:var(--ink); }
+
+  /* ---------- timeline ---------- */
+  .timeline{ position:relative; padding-left:26px; }
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px;
+    width:1px; background:var(--line-strong);
+  }
+  .tl-item{ position:relative; padding-bottom:34px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:-26px; top:4px;
+    width:9px; height:9px; border:1.5px solid var(--accent);
+    background:var(--bg-panel);
+  }
+  .tl-head{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px;
+    margin-bottom:6px;
+  }
+  .tl-dates{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  .tl-dates em{ font-style:normal; opacity:.72; }
+  .tl-role{ font-family:var(--font-display); font-weight:600; font-size:1.08rem; }
+  .tl-co{ color:var(--ink-soft); font-size:.86rem; }
+  .tl-item p{ margin:0; max-width:56em; font-size:.9rem; color:var(--ink); }
+
+  /* ---------- certifications ---------- */
+  .cert-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .cert{
+    display:flex; align-items:baseline; gap:8px;
+    border:1px solid var(--line); background:var(--bg-panel);
+    padding:9px 14px;
+    font-size:.85rem;
+  }
+  .cert .yr{ font-family:var(--font-mono); font-size:.72rem; color:var(--accent); }
+
+  /* ---------- title block footer ---------- */
+  footer{ padding:64px 0 90px; border-top:1px solid var(--line); }
+  .titleblock{
+    border:1px solid var(--line-strong);
+    background:var(--bg-panel);
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+  }
+  @media (max-width:680px){ .titleblock{ grid-template-columns:1fr 1fr; } }
+  .tb-cell{
+    padding:16px 20px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .tb-cell:nth-child(3n){ border-right:none; }
+  .tb-cell .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:.62rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:5px;
+  }
+  .tb-cell .v{ font-size:.92rem; }
+  .tb-cell .v a{ text-decoration:none; border-bottom:1px solid var(--line-strong); }
+  .tb-cell .v a:hover{ border-color:var(--accent); color:var(--accent); }
+  .tb-big{ grid-column:1 / -1; }
+  @media (max-width:680px){ .tb-cell:nth-child(3n){ border-right:1px solid var(--line); } .tb-cell:nth-child(2n){ border-right:none; } }
+  .foot-note{
+    margin-top:20px;
+    font-family:var(--font-mono);
+    font-size:.68rem;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <span class="reg-tr"></span><span class="reg-br"></span>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="mark">NJ<em>·</em>SDE4</div>
+      <nav class="toplinks">
+        <a href="#about">About</a>
+        <a href="#systems">Systems</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="frame">
+
+    <section id="hero">
+      <p class="eyebrow">Software Development Engineer IV · Avalara</p>
+      <h1>Niravkumar&nbsp;Patel</h1>
+      <p class="role-line">I build the connectors, compliance engines, and AI agents that keep global commerce tax‑compliant.</p>
+      <p class="thesis">17+ years across six companies and five industries designing and shipping tax-compliance and e-invoicing platforms — most recently an agentic, RAG-backed system that diagnoses and repairs failing e-invoice mandates on its own.</p>
+
+      <div class="stat-row">
+        <div class="stat"><span class="n">17+</span><span class="l">Years Building</span></div>
+        <div class="stat"><span class="n">6</span><span class="l">Companies</span></div>
+        <div class="stat"><span class="n">5</span><span class="l">Industries</span></div>
+        <div class="stat"><span class="n">1</span><span class="l">Agentic AI Platform</span></div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="mailto:njonweb@gmail.com">Email me <span class="arrow">→</span></a>
+        <a class="cta" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
+        <a class="cta" href="https://njonweb.github.io/" target="_blank" rel="noopener">GitHub <span class="arrow">↗</span></a>
+        <a class="cta" href="https://www.credly.com/users/njprogrammer/badges" target="_blank" rel="noopener">Credly <span class="arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="sheet-label"><span class="num">01</span><span>Profile</span><span class="rule"></span></p>
+      <div class="about-grid">
+        <div>
+          <h2>About</h2>
+          <p>I'm a Software Development Engineer IV at Avalara, where I've spent five-plus years designing the connectors that let e-commerce and ERP platforms calculate, report, and prove tax compliance in real time — across Adobe Commerce, PrestaShop, WooCommerce, and now European e-invoicing (ELR).</p>
+          <p>My focus over the last two years has shifted toward agentic AI: I designed and led an LLM-driven platform that reads a failed e-invoice submission the way an engineer would — forms a hypothesis, checks it against retrieved mandate documentation, proposes a fix, and can even resubmit and self-correct against a live sandbox before a human ever looks at it.</p>
+          <p>Day to day, that means leading and mentoring the engineers around me as much as it means writing code: running knowledge-sharing sessions on tax-calculation internals and CI/CD, pairing with teammates through technical blockers, and sitting in on client and cross-team calls so a production issue turns into a fix, not just a ticket. I carry the same support load myself, resolving customer escalations directly rather than routing them downstream. That combination has held up over five straight years of performance reviews at Avalara — I've been rated a consistently strong performer every year, on technical ownership, delivery reliability, and how I show up for the team.</p>
+          <p>Before Avalara, thirteen years shipping web platforms across Tax, E-commerce, Finance, Telecom, and Hospitality, across five companies — from junior developer to team lead. I still write the code myself; I just also draw the blueprint first.</p>
+        </div>
+        <div class="spec-box">
+          <div class="spec-row"><span class="k">Location</span><span class="v">Pune, India</span></div>
+          <div class="spec-row"><span class="k">Currently</span><span class="v">Avalara — SDE IV</span></div>
+          <div class="spec-row"><span class="k">Focus</span><span class="v">Tax Connectors · Agentic AI</span></div>
+          <div class="spec-row"><span class="k">Core Stack</span><span class="v">PHP · TypeScript · Python</span></div>
+          <div class="spec-row"><span class="k">AI Stack</span><span class="v">Google ADK · RAG · LLM Agents</span></div>
+          <div class="spec-row"><span class="k">Domains</span><span class="v">Tax · E-comm · Finance</span></div>
+          <div class="spec-row"><span class="k">Track Record</span><span class="v">5/5 yrs strong performance reviews</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="systems">
+      <p class="sheet-label"><span class="num">02</span><span>Systems I've Built</span><span class="rule"></span></p>
+      <div class="systems-grid">
+
+        <article class="card">
+          <div class="card-top"><h3>Avalara Agentic Tax and Compliance</h3><span class="pill">Live · Adobe Exchange</span></div>
+          <p class="tagline">Avalara's Adobe Commerce App Builder connector — designed and built from the first commit to a public marketplace listing.</p>
+          <div class="tagset">
+            <span class="tag">Adobe I/O App Builder</span><span class="tag">Node.js 22</span><span class="tag">React 18 + Spectrum</span><span class="tag">Adobe I/O Events</span><span class="tag">AvaTax API</span>
+          </div>
+          <ul>
+            <li>Architected the serverless action layer on Adobe I/O Runtime — the tax-calculation webhook, settings/sync/disconnect actions, and the Admin UI SDK extension merchants use to connect and configure it.</li>
+            <li>Designed Zero Touch Authentication: an OAuth 2.0 device-authorization flow that connects a merchant's AvaTax account with no manual API-key entry, with AES-256-GCM credential encryption at rest.</li>
+            <li>Built a fully autonomous, self-healing asynchronous invoice-posting queue — Commerce invoice events are queued, retried with backoff, and the pending index automatically rebuilds itself if it ever drifts.</li>
+          </ul>
+          <a class="card-link" href="https://exchange.adobe.com/apps/ec/ab9t018tvr/avalara-agentic-tax-and-compliance" target="_blank" rel="noopener">View on Adobe Exchange ↗</a>
+          <p class="card-note">Majority contributor and original architect — 57% of ~600 commits, first commit onward.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h3>ELR Mandate Builder</h3><span class="pill">Production</span></div>
+          <p class="tagline">An AI agent that diagnoses and fixes broken e-invoice submissions on its own.</p>
+          <div class="tagset">
+            <span class="tag">React 19</span><span class="tag">NestJS</span><span class="tag">Google ADK</span><span class="tag">RAG</span><span class="tag">BullMQ</span><span class="tag">PostgreSQL</span>
+          </div>
+          <ul>
+            <li>Runs a deterministic analysis pass first, then hands the LLM the error, mapping, and findings to propose a reviewable diff fix with a confidence score.</li>
+            <li>Reverse Diagnosis loop resubmits corrected XML to the live ELR sandbox up to 7 times, then derives the mapping fix from what actually worked.</li>
+            <li>RAG knowledge base synced from Confluence, the ELR API, and SharePoint; hardened against prompt injection with field redaction and an optional pre-flight scan.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h3>Adobe Commerce Docker Platform</h3><span class="pill">Production</span></div>
+          <p class="tagline">Turns a 1–2 day environment setup into minutes, for an entire connectors team.</p>
+          <div class="tagset">
+            <span class="tag">Docker Compose</span><span class="tag">Flask</span><span class="tag">Docker SDK</span><span class="tag">PHP 7.4–8.5</span>
+          </div>
+          <ul>
+            <li>Provisions on-demand Adobe Commerce 2.3–2.4.x environments across five PHP versions, each with its own monitor sidecar.</li>
+            <li>Monitor Portal exposes one-click deploy-fix, DI compile, and reindex operations as streaming background jobs across 40+ REST routes.</li>
+            <li>Built-in e-invoicing scenario generator cross-links straight into the Mandate Builder for test-data parity.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h3>AWS Server Monitor</h3><span class="pill">Production</span></div>
+          <p class="tagline">Built after one too many AWS boxes fell over under concurrent Magento cron load.</p>
+          <div class="tagset">
+            <span class="tag">Flask-SocketIO</span><span class="tag">psutil</span><span class="tag">Docker SDK</span><span class="tag">systemd</span>
+          </div>
+          <ul>
+            <li>Pushes CPU, memory, disk, and load metrics over WebSocket every 5 seconds to a live dashboard.</li>
+            <li>Threshold alerting plus one-click kill/stop on runaway processes and containers, packaged as a systemd service.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h3>Diagnostic Tool</h3><span class="pill">Production</span></div>
+          <p class="tagline">A self-serve health check so merchants stop needing a ticket to find out what's wrong.</p>
+          <div class="tagset">
+            <span class="tag">Adobe Commerce</span><span class="tag">Root-cause Rules</span>
+          </div>
+          <ul>
+            <li>Independently conceived, designed, and shipped end to end — merchants assess connector health and follow guided remediation steps without opening a support case.</li>
+            <li>Directly reduced GSO-escalated support tickets year over year.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="sheet-label"><span class="num">03</span><span>Project Portfolio — 17 Years, Six Companies</span><span class="rule"></span></p>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">Adobe Commerce</h3>
+          <p class="cat-tagline">From the official Avalara tax extension to enterprise telecom portals and boutique storefronts.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Avalara Agentic Tax and Compliance</h3><span class="pill tag">Adobe Exchange</span></div>
+            <p class="tagline">The App Builder-based successor to the classic AvaTax extension.</p>
+            <div class="tagset"><span class="tag">Adobe I/O App Builder</span><span class="tag">Node.js 22</span><span class="tag">React + Spectrum</span></div>
+            <ul>
+              <li>Zero Touch OAuth device-flow authentication and a self-healing async invoice-posting queue, replacing manual API-key setup and manual invoice resubmission.</li>
+            </ul>
+            <a class="card-link" href="https://exchange.adobe.com/apps/ec/ab9t018tvr/avalara-agentic-tax-and-compliance" target="_blank" rel="noopener">View on Adobe Exchange ↗</a>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>AvaTax for Adobe Commerce</h3><span class="pill tag">Avalara</span></div>
+            <p class="tagline">The original Avalara tax-compliance extension, on the Magento Marketplace.</p>
+            <div class="tagset"><span class="tag">Magento 2</span><span class="tag">PHP</span><span class="tag">REST APIs</span></div>
+            <ul>
+              <li>Real-time sales/use, VAT, and excise tax calculation with monthly-maintained rates, plus North American address validation.</li>
+              <li>Optional automated tax filing/remittance and CertCapture integration for exemption-certificate tracking.</li>
+            </ul>
+            <a class="card-link" href="https://commercemarketplace.adobe.com/avalara-avatax-magento.html" target="_blank" rel="noopener">View on Adobe Commerce Marketplace ↗</a>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Vodafone Ziggo Portal</h3><span class="pill tag">Netherlands</span></div>
+            <p class="tagline">Customer portal for one of the Netherlands' largest telecom providers.</p>
+            <div class="tagset"><span class="tag">Magento</span><span class="tag">React</span><span class="tag">Laravel</span><span class="tag">.NET</span><span class="tag">Java</span><span class="tag">Elasticsearch</span></div>
+            <ul>
+              <li>Delivered storefront, backend services, and search infrastructure across a five-language stack.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Redington Consumer &amp; Cloud Portal</h3><span class="pill tag">UAE</span></div>
+            <p class="tagline">Software marketplace serving UAE consumers and wholesalers.</p>
+            <div class="tagset"><span class="tag">Magento</span><span class="tag">.NET</span><span class="tag">MySQL</span><span class="tag">Laravel</span></div>
+            <ul>
+              <li>Built the consumer storefront and cloud reseller portal as parallel Magento properties on a shared backend.</li>
+            </ul>
+            <div class="card-link-row">
+              <a class="card-link" href="https://esd.redington.market/consumer" target="_blank" rel="noopener">Consumer portal ↗</a>
+              <a class="card-link" href="https://portal.redington.market/market" target="_blank" rel="noopener">Cloud portal ↗</a>
+            </div>
+          </article>
+        </div>
+        <p class="chip-cap">Additional storefronts delivered</p>
+        <div class="chip-row">
+          <a class="chip-link" href="http://berkfieldhome.com" target="_blank" rel="noopener">berkfieldhome.com ↗</a>
+          <a class="chip-link" href="http://www.youreyeslie.com" target="_blank" rel="noopener">youreyeslie.com ↗</a>
+          <a class="chip-link" href="http://www.designersandfriends.dk" target="_blank" rel="noopener">designersandfriends.dk ↗</a>
+          <a class="chip-link" href="http://www.mashnails.com" target="_blank" rel="noopener">mashnails.com ↗</a>
+          <a class="chip-link" href="http://www.caltric.com" target="_blank" rel="noopener">caltric.com ↗</a>
+          <a class="chip-link" href="http://www.buyourshoes.com" target="_blank" rel="noopener">buyourshoes.com ↗</a>
+          <a class="chip-link" href="http://www.prestavit.be" target="_blank" rel="noopener">prestavit.be ↗</a>
+          <a class="chip-link" href="http://www.palmbeachpuppies.com" target="_blank" rel="noopener">palmbeachpuppies.com ↗</a>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">Laravel</h3>
+          <p class="cat-tagline">Backend services and B2B integrations, several paired with Angular or React frontends.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Unified Manufacturing</h3><span class="pill tag">USA</span></div>
+            <p class="tagline">CD/DVD and digital printing e-commerce platform.</p>
+            <div class="tagset"><span class="tag">Laravel</span><span class="tag">Angular</span></div>
+            <ul><li>Laravel backend paired with an Angular frontend for a US-based print-on-demand storefront.</li></ul>
+            <a class="card-link" href="http://www.unifiedmanufacturing.com" target="_blank" rel="noopener">unifiedmanufacturing.com ↗</a>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Fuse5 B2B Platform</h3><span class="pill tag">CRM Integration</span></div>
+            <p class="tagline">B2B frontend integrated with the Fuse5 CRM.</p>
+            <div class="tagset"><span class="tag">Laravel</span><span class="tag">REST APIs</span></div>
+            <ul><li>Built the Laravel frontend and its RESTful integration layer into Fuse5 CRM for automotive-aftermarket distributors.</li></ul>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Siyea</h3><span class="pill tag">SaaS Tooling</span></div>
+            <p class="tagline">Account management software with third-party tool integrations.</p>
+            <div class="tagset"><span class="tag">Laravel 5.6</span></div>
+            <ul><li>Built the account-management workflows and their integrations into multiple external tools.</li></ul>
+            <a class="card-link" href="https://www.siyea.net/" target="_blank" rel="noopener">siyea.net ↗</a>
+          </article>
+        </div>
+        <p class="cat-note">Vodafone Ziggo and the Redington portals above were also core Laravel builds.</p>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">WordPress</h3>
+          <p class="cat-tagline">Custom builds for boutique retail and hospitality brands.</p>
+        </div>
+        <div class="chip-row">
+          <a class="chip-link" href="http://www.kettlebellkickboxingshop.com" target="_blank" rel="noopener">kettlebellkickboxingshop.com ↗</a>
+          <a class="chip-link" href="http://www.esalus.net" target="_blank" rel="noopener">esalus.net ↗</a>
+          <a class="chip-link" href="http://www.markbakerbowling.com" target="_blank" rel="noopener">markbakerbowling.com ↗</a>
+          <a class="chip-link" href="http://www.linksoflondonbox.com" target="_blank" rel="noopener">linksoflondonbox.com ↗</a>
+          <a class="chip-link" href="http://lulahula.com" target="_blank" rel="noopener">lulahula.com ↗</a>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">PHP &amp; Zend Framework</h3>
+          <p class="cat-tagline">Backend-heavy portals for procurement, donation, and scientific-instrumentation clients.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Mi Procurement</h3><span class="pill tag">UK · GovTech</span></div>
+            <p class="tagline">Tender and jobs management portal for public-sector procurement.</p>
+            <div class="tagset"><span class="tag">Zend Framework 2</span><span class="tag">PHP</span></div>
+            <ul><li>Built the backend tender/jobs management workflows for UK public-sector procurement.</li></ul>
+            <a class="card-link" href="https://miprocurement.co.uk/" target="_blank" rel="noopener">miprocurement.co.uk ↗</a>
+          </article>
+        </div>
+        <p class="chip-cap">Additional PHP builds</p>
+        <div class="chip-row">
+          <a class="chip-link" href="http://www.idonate.ie" target="_blank" rel="noopener">idonate.ie ↗</a>
+          <a class="chip-link" href="http://www.radiabeam.com" target="_blank" rel="noopener">radiabeam.com ↗</a>
+          <a class="chip-link" href="http://www.magicontherun.com" target="_blank" rel="noopener">magicontherun.com ↗</a>
+          <a class="chip-link" href="http://www.closetfactory.com" target="_blank" rel="noopener">closetfactory.com ↗</a>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">VTiger CRM</h3>
+          <p class="cat-tagline">Back-office platforms built directly on top of an open-source CRM.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Fuse5 Autoparts Software</h3><span class="pill tag">Automotive Aftermarket</span></div>
+            <p class="tagline">POS, CRM, inventory, and back-office management for the automotive aftermarket.</p>
+            <div class="tagset"><span class="tag">VTiger CRM</span><span class="tag">PHP</span></div>
+            <ul><li>Built the point-of-sale, inventory, and back-office management platform on top of VTiger CRM.</li></ul>
+            <a class="card-link" href="http://fuse5autopartsoftware.com" target="_blank" rel="noopener">fuse5autopartsoftware.com ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <p class="sheet-label"><span class="num">04</span><span>Skills Legend</span><span class="rule"></span></p>
+      <div class="legend">
+        <div class="legend-row"><span class="k">Languages</span><span class="v">PHP, TypeScript / JavaScript, Python, Node.js</span></div>
+        <div class="legend-row"><span class="k">Frameworks</span><span class="v">Adobe Commerce (Magento 2), NestJS, React 19, Flask, FastAPI, Laravel</span></div>
+        <div class="legend-row"><span class="k">AI / LLM</span><span class="v">Google Agent Development Kit (ADK), Retrieval-Augmented Generation, LLM gateway integration, agentic tool-use design, prompt-injection defense</span></div>
+        <div class="legend-row"><span class="k">Architecture</span><span class="v">Microservices, queue-driven design (BullMQ / Redis), REST APIs, Prisma, multi-tenant SaaS</span></div>
+        <div class="legend-row"><span class="k">Data</span><span class="v">PostgreSQL, MySQL / MariaDB, Elasticsearch / OpenSearch, Redis</span></div>
+        <div class="legend-row"><span class="k">Cloud &amp; DevOps</span><span class="v">AWS (EC2, ECS, EKS, S3), Docker Compose, CI/CD design, GitLab, Selenium / MFTF</span></div>
+        <div class="legend-row"><span class="k">Security</span><span class="v">JWT / RBAC, Checkmarx, LeanIX, WIZ, SonarQube</span></div>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <p class="sheet-label"><span class="num">05</span><span>Timeline</span><span class="rule"></span></p>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-head"><span class="tl-dates">2021 — Present <em>(5+ yrs)</em></span><span class="tl-role">Software Development Engineer IV</span><span class="tl-co">Avalara Technologies, Pune</span></div>
+          <p>Architected the ELR Mandate Builder AI platform, led the Adobe App Builder &amp; Legacy Adobe Commerce connectors, delivered Brazil, SalesTax, Excise, and PrestaShop connectors from build to General Availability.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head"><span class="tl-dates">2019 — 2021 <em>(2 yrs 2 mo)</em></span><span class="tl-role">Module Lead</span><span class="tl-co">Tech Mahindra, Pune</span></div>
+          <p>Led Agile module delivery across onshore/offshore teams; drove cloud security best practices and critical-incident root-cause analysis.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head"><span class="tl-dates">2018 — 2019 <em>(6 mo)</em></span><span class="tl-role">Senior Developer</span><span class="tl-co">Spadeworx Software Services, Pune</span></div>
+          <p>Built and supported large-scale Adobe Commerce applications for enterprise clients.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head"><span class="tl-dates">2012 — 2018 <em>(6 yrs 3 mo)</em></span><span class="tl-role">Team Lead</span><span class="tl-co">Crest Infosystems, Surat</span></div>
+          <p>Rose from Software Engineer to Team Lead building scalable products in Adobe Commerce, WordPress, VTiger CRM, and Laravel.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head"><span class="tl-dates">2010 — 2012 <em>(1 yr 5 mo)</em></span><span class="tl-role">Software Developer</span><span class="tl-co">Pronix Technology, Ahmedabad</span></div>
+          <p>Delivered web applications across CodeIgniter, Smarty, WordPress &amp; Adobe Commerce.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head"><span class="tl-dates">2009 — 2010 <em>(1 yr 3 mo)</em></span><span class="tl-role">Jr. Software Developer</span><span class="tl-co">Smart Infosys, Surat</span></div>
+          <p>Started out shipping WordPress, Adobe Commerce, and jQuery-based web applications — first line of code to first production deploy.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="certs">
+      <p class="sheet-label"><span class="num">06</span><span>Certifications</span><span class="rule"></span></p>
+      <div class="cert-row">
+        <span class="cert">Adobe Certified Professional — Magento Commerce Developer</span>
+        <span class="cert">AWS Certified Solutions Architect – Associate</span>
+        <span class="cert">AWS Certified AI Practitioner</span>
+        <span class="cert">AWS Certified Cloud Practitioner</span>
+        <span class="cert">Microsoft Azure Fundamentals</span>
+        <span class="cert">Avalara Internal — Scrum Lead</span>
+        <span class="cert">Tech Mahindra Internal — Java Full Stack Developer</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact">
+    <div class="frame">
+      <p class="sheet-label"><span class="num">07</span><span>Title Block</span><span class="rule"></span></p>
+      <div class="titleblock">
+        <div class="tb-cell tb-big"><span class="k">Drawn By</span><span class="v">Niravkumar Patel — Software Development Engineer IV, Avalara</span></div>
+        <div class="tb-cell"><span class="k">Location</span><span class="v">Pune, India</span></div>
+        <div class="tb-cell"><span class="k">Email</span><span class="v"><a href="mailto:njonweb@gmail.com">njonweb@gmail.com</a></span></div>
+        <div class="tb-cell"><span class="k">GitHub</span><span class="v"><a href="https://github.com/njonweb" target="_blank" rel="noopener">@njonweb</a></span></div>
+        <div class="tb-cell"><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/" target="_blank" rel="noopener">/in/njonweb</a></span></div>
+        <div class="tb-cell"><span class="k">Credly</span><span class="v"><a href="https://www.credly.com/users/njprogrammer/badges" target="_blank" rel="noopener">njprogrammer</a></span></div>
+        <div class="tb-cell"><span class="k">Rev.</span><span class="v">2026</span></div>
+      </div>
+      <p class="foot-note">SHEET 07/07 — END OF DOCUMENT</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
