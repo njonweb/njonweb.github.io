@@ -167,21 +167,21 @@
   h1{
     font-family:var(--font-display);
     font-weight:700;
-    font-size:clamp(2.5rem, 6.4vw, 4.4rem);
-    line-height:1.03;
-    letter-spacing:-.015em;
-    margin:0 0 14px;
+    font-size:clamp(2.1rem, 4.8vw, 3.4rem);
+    line-height:1.08;
+    letter-spacing:-.01em;
+    margin:0 0 16px;
     text-wrap:balance;
   }
   .role-line{
     font-family:var(--font-display);
     font-style:italic;
     font-weight:500;
-    font-size:clamp(1.15rem, 2.4vw, 1.5rem);
+    font-size:clamp(1.1rem, 2vw, 1.3rem);
+    line-height:1.5;
     color:var(--ink-soft);
     margin:0 0 26px;
-    max-width:56em;
-    text-wrap:balance;
+    max-width:64em;
   }
   .thesis{
     max-width:56em;
@@ -247,7 +247,7 @@
     display:grid;
     grid-template-columns:1.25fr 1fr;
     gap:clamp(24px,5vw,56px);
-    align-items:start;
+    align-items:stretch;
   }
   @media (max-width:720px){ .about-grid{ grid-template-columns:1fr; } }
   .about-grid p{ margin:0 0 16px; }
@@ -260,11 +260,15 @@
     text-wrap:balance;
   }
   .spec-box{
+    display:flex;
+    flex-direction:column;
     border:1px solid var(--line);
     background:var(--bg-panel);
+    height:100%;
   }
   .spec-row{
-    display:flex; justify-content:space-between; gap:14px;
+    display:flex; justify-content:space-between; align-items:center; gap:14px;
+    flex:1;
     padding:11px 16px;
     border-bottom:1px solid var(--line);
     font-size:.86rem;
@@ -283,7 +287,7 @@
   /* ---------- systems / projects ---------- */
   .systems-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    grid-template-columns:1fr;
     gap:1px;
     background:var(--line);
     border:1px solid var(--line);
@@ -308,7 +312,7 @@
   }
   .proj-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    grid-template-columns:1fr;
     gap:1px;
     background:var(--line);
     border:1px solid var(--line);
@@ -343,10 +347,18 @@
 
   .card{
     background:var(--bg-panel);
-    padding:26px 26px 24px;
-    display:flex; flex-direction:column;
+    padding:24px 28px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
   }
-  .card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:6px; }
+  .card-top{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .card-meta{ display:flex; flex-direction:column; gap:12px; }
+  .card-body{ display:flex; flex-direction:column; gap:12px; }
   .card h3{
     font-family:var(--font-display);
     font-weight:600;
@@ -363,16 +375,18 @@
     color:var(--good);
     background:var(--good-bg);
     white-space:nowrap;
+    flex-shrink:0;
   }
   .pill.tag{ border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
   .card .tagline{
     font-family:var(--font-display);
     font-style:italic;
     color:var(--ink-soft);
-    font-size:.95rem;
-    margin:0 0 14px;
+    font-size:1rem;
+    max-width:70em;
+    margin:0;
   }
-  .tagset{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .tagset{ display:flex; flex-wrap:wrap; gap:6px 8px; }
   .tag{
     font-family:var(--font-mono);
     font-size:.66rem;
@@ -381,15 +395,22 @@
     border:1px solid var(--line-strong);
     color:var(--ink-soft);
   }
-  .card ul{ margin:0; padding-left:0; list-style:none; flex:1; }
+  .card ul{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    column-gap:32px;
+    row-gap:10px;
+    margin:0;
+    padding-left:0;
+    list-style:none;
+  }
   .card li{
     position:relative;
-    padding-left:16px;
-    margin-bottom:9px;
-    font-size:.87rem;
+    padding-left:18px;
+    font-size:.9rem;
+    line-height:1.5;
     color:var(--ink);
   }
-  .card li:last-child{ margin-bottom:0; }
   .card li::before{
     content:"→";
     position:absolute; left:0; top:0;
@@ -398,7 +419,6 @@
   }
   .card-link{
     display:inline-flex; align-items:center; gap:6px;
-    margin-top:14px;
     font-family:var(--font-mono);
     font-size:.78rem;
     text-decoration:none;
@@ -407,8 +427,7 @@
     padding-bottom:1px;
     align-self:flex-start;
   }
-  .card-link-row{ display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:14px; }
-  .card-link-row .card-link{ margin-top:0; }
+  .card-link-row{ display:flex; flex-wrap:wrap; gap:8px 20px; }
   .card-note{
     font-family:var(--font-body);
     font-style:italic;
@@ -524,10 +543,10 @@
       <div class="mark">NJ<em>·</em>SDE4</div>
       <nav class="toplinks">
         <a href="#about">About</a>
+        <a href="#timeline">Timeline</a>
         <a href="#systems">Systems</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
-        <a href="#timeline">Timeline</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -538,8 +557,8 @@
     <section id="hero">
       <p class="eyebrow">Software Development Engineer IV · Avalara</p>
       <h1>Niravkumar&nbsp;Patel</h1>
-      <p class="role-line">I build the connectors, compliance engines, and AI agents that keep global commerce tax‑compliant.</p>
-      <p class="thesis">17+ years across six companies and five industries designing and shipping tax-compliance and e-invoicing platforms — most recently an agentic, RAG-backed system that diagnoses and repairs failing e-invoice mandates on its own.</p>
+      <p class="role-line">I design and build enterprise software across e-commerce, cloud infrastructure, tax compliance, and AI — from the platforms businesses run on to the agentic systems now running alongside them.</p>
+      <p class="thesis">17+ years across six companies and five industries — shipping e-commerce platforms on Adobe Commerce, Laravel, WordPress, and VTiger CRM; enterprise portals for telecom and CRM clients; Node.js, React, and Python-based connectors, admin tooling, and internal platforms; cloud infrastructure on AWS and Docker; and, most recently, an agentic, RAG-backed system that diagnoses and repairs failing e-invoice mandates on its own.</p>
 
       <div class="stat-row">
         <div class="stat"><span class="n">17+</span><span class="l">Years Building</span></div>
@@ -569,248 +588,21 @@
         <div class="spec-box">
           <div class="spec-row"><span class="k">Location</span><span class="v">Pune, India</span></div>
           <div class="spec-row"><span class="k">Currently</span><span class="v">Avalara — SDE IV</span></div>
-          <div class="spec-row"><span class="k">Focus</span><span class="v">Tax Connectors · Agentic AI</span></div>
+          <div class="spec-row"><span class="k">Experience</span><span class="v">17+ yrs · 6 companies</span></div>
+          <div class="spec-row"><span class="k">Focus</span><span class="v">Tax Compliance · Agentic AI</span></div>
           <div class="spec-row"><span class="k">Core Stack</span><span class="v">PHP · TypeScript · Python</span></div>
+          <div class="spec-row"><span class="k">Frameworks</span><span class="v">React · NestJS · Laravel</span></div>
           <div class="spec-row"><span class="k">AI Stack</span><span class="v">Google ADK · RAG · LLM Agents</span></div>
-          <div class="spec-row"><span class="k">Domains</span><span class="v">Tax · E-comm · Finance</span></div>
+          <div class="spec-row"><span class="k">Cloud &amp; DevOps</span><span class="v">AWS · Docker · CI/CD</span></div>
+          <div class="spec-row"><span class="k">Domains</span><span class="v">Tax · E-comm · Finance · Telecom</span></div>
+          <div class="spec-row"><span class="k">Certifications</span><span class="v">AWS ×3 · Adobe · Azure</span></div>
           <div class="spec-row"><span class="k">Track Record</span><span class="v">5/5 yrs strong performance reviews</span></div>
         </div>
       </div>
     </section>
 
-    <section id="systems">
-      <p class="sheet-label"><span class="num">02</span><span>Systems I've Built</span><span class="rule"></span></p>
-      <div class="systems-grid">
-
-        <article class="card">
-          <div class="card-top"><h3>Avalara Agentic Tax and Compliance</h3><span class="pill">Live · Adobe Exchange</span></div>
-          <p class="tagline">Avalara's Adobe Commerce App Builder connector — designed and built from the first commit to a public marketplace listing.</p>
-          <div class="tagset">
-            <span class="tag">Adobe I/O App Builder</span><span class="tag">Node.js 22</span><span class="tag">React 18 + Spectrum</span><span class="tag">Adobe I/O Events</span><span class="tag">AvaTax API</span>
-          </div>
-          <ul>
-            <li>Architected the serverless action layer on Adobe I/O Runtime — the tax-calculation webhook, settings/sync/disconnect actions, and the Admin UI SDK extension merchants use to connect and configure it.</li>
-            <li>Designed Zero Touch Authentication: an OAuth 2.0 device-authorization flow that connects a merchant's AvaTax account with no manual API-key entry, with AES-256-GCM credential encryption at rest.</li>
-            <li>Built a fully autonomous, self-healing asynchronous invoice-posting queue — Commerce invoice events are queued, retried with backoff, and the pending index automatically rebuilds itself if it ever drifts.</li>
-          </ul>
-          <a class="card-link" href="https://exchange.adobe.com/apps/ec/ab9t018tvr/avalara-agentic-tax-and-compliance" target="_blank" rel="noopener">View on Adobe Exchange ↗</a>
-          <p class="card-note">Majority contributor and original architect — 57% of ~600 commits, first commit onward.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-top"><h3>ELR Mandate Builder</h3><span class="pill">Production</span></div>
-          <p class="tagline">An AI agent that diagnoses and fixes broken e-invoice submissions on its own.</p>
-          <div class="tagset">
-            <span class="tag">React 19</span><span class="tag">NestJS</span><span class="tag">Google ADK</span><span class="tag">RAG</span><span class="tag">BullMQ</span><span class="tag">PostgreSQL</span>
-          </div>
-          <ul>
-            <li>Runs a deterministic analysis pass first, then hands the LLM the error, mapping, and findings to propose a reviewable diff fix with a confidence score.</li>
-            <li>Reverse Diagnosis loop resubmits corrected XML to the live ELR sandbox up to 7 times, then derives the mapping fix from what actually worked.</li>
-            <li>RAG knowledge base synced from Confluence, the ELR API, and SharePoint; hardened against prompt injection with field redaction and an optional pre-flight scan.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-top"><h3>Adobe Commerce Docker Platform</h3><span class="pill">Production</span></div>
-          <p class="tagline">Turns a 1–2 day environment setup into minutes, for an entire connectors team.</p>
-          <div class="tagset">
-            <span class="tag">Docker Compose</span><span class="tag">Flask</span><span class="tag">Docker SDK</span><span class="tag">PHP 7.4–8.5</span>
-          </div>
-          <ul>
-            <li>Provisions on-demand Adobe Commerce 2.3–2.4.x environments across five PHP versions, each with its own monitor sidecar.</li>
-            <li>Monitor Portal exposes one-click deploy-fix, DI compile, and reindex operations as streaming background jobs across 40+ REST routes.</li>
-            <li>Built-in e-invoicing scenario generator cross-links straight into the Mandate Builder for test-data parity.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-top"><h3>AWS Server Monitor</h3><span class="pill">Production</span></div>
-          <p class="tagline">Built after one too many AWS boxes fell over under concurrent Magento cron load.</p>
-          <div class="tagset">
-            <span class="tag">Flask-SocketIO</span><span class="tag">psutil</span><span class="tag">Docker SDK</span><span class="tag">systemd</span>
-          </div>
-          <ul>
-            <li>Pushes CPU, memory, disk, and load metrics over WebSocket every 5 seconds to a live dashboard.</li>
-            <li>Threshold alerting plus one-click kill/stop on runaway processes and containers, packaged as a systemd service.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-top"><h3>Diagnostic Tool</h3><span class="pill">Production</span></div>
-          <p class="tagline">A self-serve health check so merchants stop needing a ticket to find out what's wrong.</p>
-          <div class="tagset">
-            <span class="tag">Adobe Commerce</span><span class="tag">Root-cause Rules</span>
-          </div>
-          <ul>
-            <li>Independently conceived, designed, and shipped end to end — merchants assess connector health and follow guided remediation steps without opening a support case.</li>
-            <li>Directly reduced GSO-escalated support tickets year over year.</li>
-          </ul>
-        </article>
-
-      </div>
-    </section>
-
-    <section id="projects">
-      <p class="sheet-label"><span class="num">03</span><span>Project Portfolio — 17 Years, Six Companies</span><span class="rule"></span></p>
-
-      <div class="cat-block">
-        <div class="cat-head">
-          <h3 class="cat-name">Adobe Commerce</h3>
-          <p class="cat-tagline">From the official Avalara tax extension to enterprise telecom portals and boutique storefronts.</p>
-        </div>
-        <div class="proj-grid">
-          <article class="card">
-            <div class="card-top"><h3>Avalara Agentic Tax and Compliance</h3><span class="pill tag">Adobe Exchange</span></div>
-            <p class="tagline">The App Builder-based successor to the classic AvaTax extension.</p>
-            <div class="tagset"><span class="tag">Adobe I/O App Builder</span><span class="tag">Node.js 22</span><span class="tag">React + Spectrum</span></div>
-            <ul>
-              <li>Zero Touch OAuth device-flow authentication and a self-healing async invoice-posting queue, replacing manual API-key setup and manual invoice resubmission.</li>
-            </ul>
-            <a class="card-link" href="https://exchange.adobe.com/apps/ec/ab9t018tvr/avalara-agentic-tax-and-compliance" target="_blank" rel="noopener">View on Adobe Exchange ↗</a>
-          </article>
-          <article class="card">
-            <div class="card-top"><h3>AvaTax for Adobe Commerce</h3><span class="pill tag">Avalara</span></div>
-            <p class="tagline">The original Avalara tax-compliance extension, on the Magento Marketplace.</p>
-            <div class="tagset"><span class="tag">Magento 2</span><span class="tag">PHP</span><span class="tag">REST APIs</span></div>
-            <ul>
-              <li>Real-time sales/use, VAT, and excise tax calculation with monthly-maintained rates, plus North American address validation.</li>
-              <li>Optional automated tax filing/remittance and CertCapture integration for exemption-certificate tracking.</li>
-            </ul>
-            <a class="card-link" href="https://commercemarketplace.adobe.com/avalara-avatax-magento.html" target="_blank" rel="noopener">View on Adobe Commerce Marketplace ↗</a>
-          </article>
-          <article class="card">
-            <div class="card-top"><h3>Vodafone Ziggo Portal</h3><span class="pill tag">Netherlands</span></div>
-            <p class="tagline">Customer portal for one of the Netherlands' largest telecom providers.</p>
-            <div class="tagset"><span class="tag">Magento</span><span class="tag">React</span><span class="tag">Laravel</span><span class="tag">.NET</span><span class="tag">Java</span><span class="tag">Elasticsearch</span></div>
-            <ul>
-              <li>Delivered storefront, backend services, and search infrastructure across a five-language stack.</li>
-            </ul>
-          </article>
-          <article class="card">
-            <div class="card-top"><h3>Redington Consumer &amp; Cloud Portal</h3><span class="pill tag">UAE</span></div>
-            <p class="tagline">Software marketplace serving UAE consumers and wholesalers.</p>
-            <div class="tagset"><span class="tag">Magento</span><span class="tag">.NET</span><span class="tag">MySQL</span><span class="tag">Laravel</span></div>
-            <ul>
-              <li>Built the consumer storefront and cloud reseller portal as parallel Magento properties on a shared backend.</li>
-            </ul>
-            <div class="card-link-row">
-              <a class="card-link" href="https://esd.redington.market/consumer" target="_blank" rel="noopener">Consumer portal ↗</a>
-              <a class="card-link" href="https://portal.redington.market/market" target="_blank" rel="noopener">Cloud portal ↗</a>
-            </div>
-          </article>
-        </div>
-        <p class="chip-cap">Additional storefronts delivered</p>
-        <div class="chip-row">
-          <a class="chip-link" href="http://berkfieldhome.com" target="_blank" rel="noopener">berkfieldhome.com ↗</a>
-          <a class="chip-link" href="http://www.youreyeslie.com" target="_blank" rel="noopener">youreyeslie.com ↗</a>
-          <a class="chip-link" href="http://www.designersandfriends.dk" target="_blank" rel="noopener">designersandfriends.dk ↗</a>
-          <a class="chip-link" href="http://www.mashnails.com" target="_blank" rel="noopener">mashnails.com ↗</a>
-          <a class="chip-link" href="http://www.caltric.com" target="_blank" rel="noopener">caltric.com ↗</a>
-          <a class="chip-link" href="http://www.buyourshoes.com" target="_blank" rel="noopener">buyourshoes.com ↗</a>
-          <a class="chip-link" href="http://www.prestavit.be" target="_blank" rel="noopener">prestavit.be ↗</a>
-          <a class="chip-link" href="http://www.palmbeachpuppies.com" target="_blank" rel="noopener">palmbeachpuppies.com ↗</a>
-        </div>
-      </div>
-
-      <div class="cat-block">
-        <div class="cat-head">
-          <h3 class="cat-name">Laravel</h3>
-          <p class="cat-tagline">Backend services and B2B integrations, several paired with Angular or React frontends.</p>
-        </div>
-        <div class="proj-grid">
-          <article class="card">
-            <div class="card-top"><h3>Unified Manufacturing</h3><span class="pill tag">USA</span></div>
-            <p class="tagline">CD/DVD and digital printing e-commerce platform.</p>
-            <div class="tagset"><span class="tag">Laravel</span><span class="tag">Angular</span></div>
-            <ul><li>Laravel backend paired with an Angular frontend for a US-based print-on-demand storefront.</li></ul>
-            <a class="card-link" href="http://www.unifiedmanufacturing.com" target="_blank" rel="noopener">unifiedmanufacturing.com ↗</a>
-          </article>
-          <article class="card">
-            <div class="card-top"><h3>Fuse5 B2B Platform</h3><span class="pill tag">CRM Integration</span></div>
-            <p class="tagline">B2B frontend integrated with the Fuse5 CRM.</p>
-            <div class="tagset"><span class="tag">Laravel</span><span class="tag">REST APIs</span></div>
-            <ul><li>Built the Laravel frontend and its RESTful integration layer into Fuse5 CRM for automotive-aftermarket distributors.</li></ul>
-          </article>
-          <article class="card">
-            <div class="card-top"><h3>Siyea</h3><span class="pill tag">SaaS Tooling</span></div>
-            <p class="tagline">Account management software with third-party tool integrations.</p>
-            <div class="tagset"><span class="tag">Laravel 5.6</span></div>
-            <ul><li>Built the account-management workflows and their integrations into multiple external tools.</li></ul>
-            <a class="card-link" href="https://www.siyea.net/" target="_blank" rel="noopener">siyea.net ↗</a>
-          </article>
-        </div>
-        <p class="cat-note">Vodafone Ziggo and the Redington portals above were also core Laravel builds.</p>
-      </div>
-
-      <div class="cat-block">
-        <div class="cat-head">
-          <h3 class="cat-name">WordPress</h3>
-          <p class="cat-tagline">Custom builds for boutique retail and hospitality brands.</p>
-        </div>
-        <div class="chip-row">
-          <a class="chip-link" href="http://www.kettlebellkickboxingshop.com" target="_blank" rel="noopener">kettlebellkickboxingshop.com ↗</a>
-          <a class="chip-link" href="http://www.esalus.net" target="_blank" rel="noopener">esalus.net ↗</a>
-          <a class="chip-link" href="http://www.markbakerbowling.com" target="_blank" rel="noopener">markbakerbowling.com ↗</a>
-          <a class="chip-link" href="http://www.linksoflondonbox.com" target="_blank" rel="noopener">linksoflondonbox.com ↗</a>
-          <a class="chip-link" href="http://lulahula.com" target="_blank" rel="noopener">lulahula.com ↗</a>
-        </div>
-      </div>
-
-      <div class="cat-block">
-        <div class="cat-head">
-          <h3 class="cat-name">PHP &amp; Zend Framework</h3>
-          <p class="cat-tagline">Backend-heavy portals for procurement, donation, and scientific-instrumentation clients.</p>
-        </div>
-        <div class="proj-grid">
-          <article class="card">
-            <div class="card-top"><h3>Mi Procurement</h3><span class="pill tag">UK · GovTech</span></div>
-            <p class="tagline">Tender and jobs management portal for public-sector procurement.</p>
-            <div class="tagset"><span class="tag">Zend Framework 2</span><span class="tag">PHP</span></div>
-            <ul><li>Built the backend tender/jobs management workflows for UK public-sector procurement.</li></ul>
-            <a class="card-link" href="https://miprocurement.co.uk/" target="_blank" rel="noopener">miprocurement.co.uk ↗</a>
-          </article>
-        </div>
-        <p class="chip-cap">Additional PHP builds</p>
-        <div class="chip-row">
-          <a class="chip-link" href="http://www.idonate.ie" target="_blank" rel="noopener">idonate.ie ↗</a>
-          <a class="chip-link" href="http://www.radiabeam.com" target="_blank" rel="noopener">radiabeam.com ↗</a>
-          <a class="chip-link" href="http://www.magicontherun.com" target="_blank" rel="noopener">magicontherun.com ↗</a>
-          <a class="chip-link" href="http://www.closetfactory.com" target="_blank" rel="noopener">closetfactory.com ↗</a>
-        </div>
-      </div>
-
-      <div class="cat-block">
-        <div class="cat-head">
-          <h3 class="cat-name">VTiger CRM</h3>
-          <p class="cat-tagline">Back-office platforms built directly on top of an open-source CRM.</p>
-        </div>
-        <div class="proj-grid">
-          <article class="card">
-            <div class="card-top"><h3>Fuse5 Autoparts Software</h3><span class="pill tag">Automotive Aftermarket</span></div>
-            <p class="tagline">POS, CRM, inventory, and back-office management for the automotive aftermarket.</p>
-            <div class="tagset"><span class="tag">VTiger CRM</span><span class="tag">PHP</span></div>
-            <ul><li>Built the point-of-sale, inventory, and back-office management platform on top of VTiger CRM.</li></ul>
-            <a class="card-link" href="http://fuse5autopartsoftware.com" target="_blank" rel="noopener">fuse5autopartsoftware.com ↗</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <p class="sheet-label"><span class="num">04</span><span>Skills Legend</span><span class="rule"></span></p>
-      <div class="legend">
-        <div class="legend-row"><span class="k">Languages</span><span class="v">PHP, TypeScript / JavaScript, Python, Node.js</span></div>
-        <div class="legend-row"><span class="k">Frameworks</span><span class="v">Adobe Commerce (Magento 2), NestJS, React 19, Flask, FastAPI, Laravel</span></div>
-        <div class="legend-row"><span class="k">AI / LLM</span><span class="v">Google Agent Development Kit (ADK), Retrieval-Augmented Generation, LLM gateway integration, agentic tool-use design, prompt-injection defense</span></div>
-        <div class="legend-row"><span class="k">Architecture</span><span class="v">Microservices, queue-driven design (BullMQ / Redis), REST APIs, Prisma, multi-tenant SaaS</span></div>
-        <div class="legend-row"><span class="k">Data</span><span class="v">PostgreSQL, MySQL / MariaDB, Elasticsearch / OpenSearch, Redis</span></div>
-        <div class="legend-row"><span class="k">Cloud &amp; DevOps</span><span class="v">AWS (EC2, ECS, EKS, S3), Docker Compose, CI/CD design, GitLab, Selenium / MFTF</span></div>
-        <div class="legend-row"><span class="k">Security</span><span class="v">JWT / RBAC, Checkmarx, LeanIX, WIZ, SonarQube</span></div>
-      </div>
-    </section>
-
     <section id="timeline">
-      <p class="sheet-label"><span class="num">05</span><span>Timeline</span><span class="rule"></span></p>
+      <p class="sheet-label"><span class="num">02</span><span>Timeline</span><span class="rule"></span></p>
       <div class="timeline">
 
         <div class="tl-item">
@@ -845,6 +637,294 @@
 
       </div>
     </section>
+
+    <section id="systems">
+      <p class="sheet-label"><span class="num">03</span><span>Systems I've Built</span><span class="rule"></span></p>
+      <div class="systems-grid">
+
+        <article class="card">
+            <div class="card-top"><h3>Avalara Agentic Tax and Compliance</h3><span class="pill">Live · Adobe Exchange</span></div>
+            <div class="card-meta">
+              <p class="tagline">Avalara's Adobe Commerce App Builder connector — designed and built from the first commit to a public marketplace listing.</p>
+                        <div class="tagset">
+                          <span class="tag">Adobe I/O App Builder</span><span class="tag">Node.js 22</span><span class="tag">React 18 + Spectrum</span><span class="tag">Adobe I/O Events</span><span class="tag">AvaTax API</span>
+                        </div>
+            </div>
+            <div class="card-body">
+              <ul>
+                          <li>Architected the serverless action layer on Adobe I/O Runtime — the tax-calculation webhook, settings/sync/disconnect actions, and the Admin UI SDK extension merchants use to connect and configure it.</li>
+                          <li>Designed Zero Touch Authentication: an OAuth 2.0 device-authorization flow that connects a merchant's AvaTax account with no manual API-key entry, with AES-256-GCM credential encryption at rest.</li>
+                          <li>Built a fully autonomous, self-healing asynchronous invoice-posting queue — Commerce invoice events are queued, retried with backoff, and the pending index automatically rebuilds itself if it ever drifts.</li>
+                        </ul>
+                        <a class="card-link" href="https://exchange.adobe.com/apps/ec/ab9t018tvr/avalara-agentic-tax-and-compliance" target="_blank" rel="noopener">View on Adobe Exchange ↗</a>
+                        <p class="card-note">Majority contributor and original architect — 57% of ~600 commits, first commit onward.</p>
+            </div>
+          </article>
+
+        <article class="card">
+            <div class="card-top"><h3>ELR Mandate Builder</h3><span class="pill">Production</span></div>
+            <div class="card-meta">
+              <p class="tagline">An AI agent that diagnoses and fixes broken e-invoice submissions on its own.</p>
+                        <div class="tagset">
+                          <span class="tag">React 19</span><span class="tag">NestJS</span><span class="tag">Google ADK</span><span class="tag">RAG</span><span class="tag">BullMQ</span><span class="tag">PostgreSQL</span>
+                        </div>
+            </div>
+            <div class="card-body">
+              <ul>
+                          <li>Runs a deterministic analysis pass first, then hands the LLM the error, mapping, and findings to propose a reviewable diff fix with a confidence score.</li>
+                          <li>Reverse Diagnosis loop resubmits corrected XML to the live ELR sandbox up to 7 times, then derives the mapping fix from what actually worked.</li>
+                          <li>RAG knowledge base synced from Confluence, the ELR API, and SharePoint; hardened against prompt injection with field redaction and an optional pre-flight scan.</li>
+                        </ul>
+            </div>
+          </article>
+
+        <article class="card">
+            <div class="card-top"><h3>Adobe Commerce Docker Platform</h3><span class="pill">Production</span></div>
+            <div class="card-meta">
+              <p class="tagline">Turns a 1–2 day environment setup into minutes, for an entire connectors team.</p>
+                        <div class="tagset">
+                          <span class="tag">Docker Compose</span><span class="tag">Flask</span><span class="tag">Docker SDK</span><span class="tag">PHP 7.4–8.5</span>
+                        </div>
+            </div>
+            <div class="card-body">
+              <ul>
+                          <li>Provisions on-demand Adobe Commerce 2.3–2.4.x environments across five PHP versions, each with its own monitor sidecar.</li>
+                          <li>Monitor Portal exposes one-click deploy-fix, DI compile, and reindex operations as streaming background jobs across 40+ REST routes.</li>
+                          <li>Built-in e-invoicing scenario generator cross-links straight into the Mandate Builder for test-data parity.</li>
+                        </ul>
+            </div>
+          </article>
+
+        <article class="card">
+            <div class="card-top"><h3>AWS Server Monitor</h3><span class="pill">Production</span></div>
+            <div class="card-meta">
+              <p class="tagline">Built after one too many AWS boxes fell over under concurrent Magento cron load.</p>
+                        <div class="tagset">
+                          <span class="tag">Flask-SocketIO</span><span class="tag">psutil</span><span class="tag">Docker SDK</span><span class="tag">systemd</span>
+                        </div>
+            </div>
+            <div class="card-body">
+              <ul>
+                          <li>Pushes CPU, memory, disk, and load metrics over WebSocket every 5 seconds to a live dashboard.</li>
+                          <li>Threshold alerting plus one-click kill/stop on runaway processes and containers, packaged as a systemd service.</li>
+                        </ul>
+            </div>
+          </article>
+
+        <article class="card">
+            <div class="card-top"><h3>Diagnostic Tool</h3><span class="pill">Production</span></div>
+            <div class="card-meta">
+              <p class="tagline">A self-serve health check so merchants stop needing a ticket to find out what's wrong.</p>
+                        <div class="tagset">
+                          <span class="tag">Adobe Commerce</span><span class="tag">Root-cause Rules</span>
+                        </div>
+            </div>
+            <div class="card-body">
+              <ul>
+                          <li>Independently conceived, designed, and shipped end to end — merchants assess connector health and follow guided remediation steps without opening a support case.</li>
+                          <li>Directly reduced GSO-escalated support tickets year over year.</li>
+                        </ul>
+            </div>
+          </article>
+
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="sheet-label"><span class="num">04</span><span>Project Portfolio</span><span class="rule"></span></p>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">Adobe Commerce</h3>
+          <p class="cat-tagline">From the official Avalara tax extension to enterprise telecom portals and boutique storefronts.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Avalara Agentic Tax and Compliance</h3><span class="pill tag">Adobe Exchange</span></div>
+            <div class="card-meta">
+              <p class="tagline">The App Builder-based successor to the classic AvaTax extension.</p>
+                          <div class="tagset"><span class="tag">Adobe I/O App Builder</span><span class="tag">Node.js 22</span><span class="tag">React + Spectrum</span></div>
+            </div>
+            <div class="card-body">
+              <ul>
+                            <li>Zero Touch OAuth device-flow authentication and a self-healing async invoice-posting queue, replacing manual API-key setup and manual invoice resubmission.</li>
+                          </ul>
+                          <a class="card-link" href="https://exchange.adobe.com/apps/ec/ab9t018tvr/avalara-agentic-tax-and-compliance" target="_blank" rel="noopener">View on Adobe Exchange ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>AvaTax for Adobe Commerce</h3><span class="pill tag">Avalara</span></div>
+            <div class="card-meta">
+              <p class="tagline">The original Avalara tax-compliance extension, on the Magento Marketplace.</p>
+                          <div class="tagset"><span class="tag">Magento 2</span><span class="tag">PHP</span><span class="tag">REST APIs</span></div>
+            </div>
+            <div class="card-body">
+              <ul>
+                            <li>Real-time sales/use, VAT, and excise tax calculation with monthly-maintained rates, plus North American address validation.</li>
+                            <li>Optional automated tax filing/remittance and CertCapture integration for exemption-certificate tracking.</li>
+                          </ul>
+                          <a class="card-link" href="https://commercemarketplace.adobe.com/avalara-avatax-magento.html" target="_blank" rel="noopener">View on Adobe Commerce Marketplace ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Vodafone Ziggo Portal</h3><span class="pill tag">Netherlands</span></div>
+            <div class="card-meta">
+              <p class="tagline">Customer portal for one of the Netherlands' largest telecom providers.</p>
+                          <div class="tagset"><span class="tag">Magento</span><span class="tag">React</span><span class="tag">Laravel</span><span class="tag">.NET</span><span class="tag">Java</span><span class="tag">Elasticsearch</span></div>
+            </div>
+            <div class="card-body">
+              <ul>
+                            <li>Delivered storefront, backend services, and search infrastructure across a five-language stack.</li>
+                          </ul>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Redington Consumer &amp; Cloud Portal</h3><span class="pill tag">UAE</span></div>
+            <div class="card-meta">
+              <p class="tagline">Software marketplace serving UAE consumers and wholesalers.</p>
+                          <div class="tagset"><span class="tag">Magento</span><span class="tag">.NET</span><span class="tag">MySQL</span><span class="tag">Laravel</span></div>
+            </div>
+            <div class="card-body">
+              <ul>
+                            <li>Built the consumer storefront and cloud reseller portal as parallel Magento properties on a shared backend.</li>
+                          </ul>
+                          <div class="card-link-row">
+                            <a class="card-link" href="https://esd.redington.market/consumer" target="_blank" rel="noopener">Consumer portal ↗</a>
+                            <a class="card-link" href="https://portal.redington.market/market" target="_blank" rel="noopener">Cloud portal ↗</a>
+                          </div>
+            </div>
+          </article>
+        </div>
+        <p class="chip-cap">Additional storefronts delivered</p>
+        <div class="chip-row">
+          <a class="chip-link" href="http://berkfieldhome.com" target="_blank" rel="noopener">berkfieldhome.com ↗</a>
+          <a class="chip-link" href="http://www.youreyeslie.com" target="_blank" rel="noopener">youreyeslie.com ↗</a>
+          <a class="chip-link" href="http://www.designersandfriends.dk" target="_blank" rel="noopener">designersandfriends.dk ↗</a>
+          <a class="chip-link" href="http://www.mashnails.com" target="_blank" rel="noopener">mashnails.com ↗</a>
+          <a class="chip-link" href="http://www.caltric.com" target="_blank" rel="noopener">caltric.com ↗</a>
+          <a class="chip-link" href="http://www.buyourshoes.com" target="_blank" rel="noopener">buyourshoes.com ↗</a>
+          <a class="chip-link" href="http://www.prestavit.be" target="_blank" rel="noopener">prestavit.be ↗</a>
+          <a class="chip-link" href="http://www.palmbeachpuppies.com" target="_blank" rel="noopener">palmbeachpuppies.com ↗</a>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">Laravel</h3>
+          <p class="cat-tagline">Backend services and B2B integrations, several paired with Angular or React frontends.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Unified Manufacturing</h3><span class="pill tag">USA</span></div>
+            <div class="card-meta">
+              <p class="tagline">CD/DVD and digital printing e-commerce platform.</p>
+                          <div class="tagset"><span class="tag">Laravel</span><span class="tag">Angular</span></div>
+            </div>
+            <div class="card-body">
+              <ul><li>Laravel backend paired with an Angular frontend for a US-based print-on-demand storefront.</li></ul>
+                          <a class="card-link" href="http://www.unifiedmanufacturing.com" target="_blank" rel="noopener">unifiedmanufacturing.com ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Fuse5 B2B Platform</h3><span class="pill tag">CRM Integration</span></div>
+            <div class="card-meta">
+              <p class="tagline">B2B frontend integrated with the Fuse5 CRM.</p>
+                          <div class="tagset"><span class="tag">Laravel</span><span class="tag">REST APIs</span></div>
+            </div>
+            <div class="card-body">
+              <ul><li>Built the Laravel frontend and its RESTful integration layer into Fuse5 CRM for automotive-aftermarket distributors.</li></ul>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><h3>Siyea</h3><span class="pill tag">SaaS Tooling</span></div>
+            <div class="card-meta">
+              <p class="tagline">Account management software with third-party tool integrations.</p>
+                          <div class="tagset"><span class="tag">Laravel 5.6</span></div>
+            </div>
+            <div class="card-body">
+              <ul><li>Built the account-management workflows and their integrations into multiple external tools.</li></ul>
+                          <a class="card-link" href="https://www.siyea.net/" target="_blank" rel="noopener">siyea.net ↗</a>
+            </div>
+          </article>
+        </div>
+        <p class="cat-note">Vodafone Ziggo and the Redington portals above were also core Laravel builds.</p>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">WordPress</h3>
+          <p class="cat-tagline">Custom builds for boutique retail and hospitality brands.</p>
+        </div>
+        <div class="chip-row">
+          <a class="chip-link" href="http://www.kettlebellkickboxingshop.com" target="_blank" rel="noopener">kettlebellkickboxingshop.com ↗</a>
+          <a class="chip-link" href="http://www.esalus.net" target="_blank" rel="noopener">esalus.net ↗</a>
+          <a class="chip-link" href="http://www.markbakerbowling.com" target="_blank" rel="noopener">markbakerbowling.com ↗</a>
+          <a class="chip-link" href="http://www.linksoflondonbox.com" target="_blank" rel="noopener">linksoflondonbox.com ↗</a>
+          <a class="chip-link" href="http://lulahula.com" target="_blank" rel="noopener">lulahula.com ↗</a>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">PHP &amp; Zend Framework</h3>
+          <p class="cat-tagline">Backend-heavy portals for procurement, donation, and scientific-instrumentation clients.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Mi Procurement</h3><span class="pill tag">UK · GovTech</span></div>
+            <div class="card-meta">
+              <p class="tagline">Tender and jobs management portal for public-sector procurement.</p>
+                          <div class="tagset"><span class="tag">Zend Framework 2</span><span class="tag">PHP</span></div>
+            </div>
+            <div class="card-body">
+              <ul><li>Built the backend tender/jobs management workflows for UK public-sector procurement.</li></ul>
+                          <a class="card-link" href="https://miprocurement.co.uk/" target="_blank" rel="noopener">miprocurement.co.uk ↗</a>
+            </div>
+          </article>
+        </div>
+        <p class="chip-cap">Additional PHP builds</p>
+        <div class="chip-row">
+          <a class="chip-link" href="http://www.idonate.ie" target="_blank" rel="noopener">idonate.ie ↗</a>
+          <a class="chip-link" href="http://www.radiabeam.com" target="_blank" rel="noopener">radiabeam.com ↗</a>
+          <a class="chip-link" href="http://www.magicontherun.com" target="_blank" rel="noopener">magicontherun.com ↗</a>
+          <a class="chip-link" href="http://www.closetfactory.com" target="_blank" rel="noopener">closetfactory.com ↗</a>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <div class="cat-head">
+          <h3 class="cat-name">VTiger CRM</h3>
+          <p class="cat-tagline">Back-office platforms built directly on top of an open-source CRM.</p>
+        </div>
+        <div class="proj-grid">
+          <article class="card">
+            <div class="card-top"><h3>Fuse5 Autoparts Software</h3><span class="pill tag">Automotive Aftermarket</span></div>
+            <div class="card-meta">
+              <p class="tagline">POS, CRM, inventory, and back-office management for the automotive aftermarket.</p>
+                          <div class="tagset"><span class="tag">VTiger CRM</span><span class="tag">PHP</span></div>
+            </div>
+            <div class="card-body">
+              <ul><li>Built the point-of-sale, inventory, and back-office management platform on top of VTiger CRM.</li></ul>
+                          <a class="card-link" href="http://fuse5autopartsoftware.com" target="_blank" rel="noopener">fuse5autopartsoftware.com ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <p class="sheet-label"><span class="num">05</span><span>Skills Legend</span><span class="rule"></span></p>
+      <div class="legend">
+        <div class="legend-row"><span class="k">Languages</span><span class="v">PHP, TypeScript / JavaScript, Python, Node.js</span></div>
+        <div class="legend-row"><span class="k">Frameworks</span><span class="v">Adobe Commerce (Magento 2), NestJS, React 19, Flask, FastAPI, Laravel</span></div>
+        <div class="legend-row"><span class="k">AI / LLM</span><span class="v">Google Agent Development Kit (ADK), Retrieval-Augmented Generation, LLM gateway integration, agentic tool-use design, prompt-injection defense</span></div>
+        <div class="legend-row"><span class="k">Architecture</span><span class="v">Microservices, queue-driven design (BullMQ / Redis), REST APIs, Prisma, multi-tenant SaaS</span></div>
+        <div class="legend-row"><span class="k">Data</span><span class="v">PostgreSQL, MySQL / MariaDB, Elasticsearch / OpenSearch, Redis</span></div>
+        <div class="legend-row"><span class="k">Cloud &amp; DevOps</span><span class="v">AWS (EC2, ECS, EKS, S3), Docker Compose, CI/CD design, GitLab, Selenium / MFTF</span></div>
+        <div class="legend-row"><span class="k">Security</span><span class="v">JWT / RBAC, Checkmarx, LeanIX, WIZ, SonarQube</span></div>
+      </div>
+    </section>
+
 
     <section id="certs">
       <p class="sheet-label"><span class="num">06</span><span>Certifications</span><span class="rule"></span></p>
